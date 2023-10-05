@@ -1,0 +1,27 @@
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    background-color: #3eb489;
+}
+
+.game-details{
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    color: #feefe5;
+}
+
+#homebtn{
+    float: right;
+    width: 60px;
+    height: 60px;
+    background-color: #1e90ff;
+    border-radius: 10px;
+    padding-top: 5px;
+    margin: 5px;
+    font-size: 50px;
+}
