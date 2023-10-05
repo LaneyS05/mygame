@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" id="page">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="home.html"></script>
+</head>
+<body>
+    <h1>Snake Game 🐍</h1>
+    <div id="startbtn">
+    <link><a href="start.html" id="startbtn" type="button">Start</a></div>
+    <div class="set">
+        <button class="settingbtn" onclick="openPopup()">Settings</button>
+    </div>
+    </div>
+    <div class="popup" id="popup">
+        <img src="./assets/snake-6158325_1280.png" alt="cartoon snake from pixabay by StarGlade">
+        <h2>How to Play</h2>
+        <p>use the arrow keys to move the snake; try to eat as much as you can without running into yourself or a wall</p>
+        <button class="exitbtn" onclick="closePopup()">OK</button>
+    </div>
+    <script>
+        let popup = document.getElementById("popup");
+
+        function openPopup(){
+            popup.classList.add("open-popup")
+        }
+
+        function closePopup(){
+            popup.classList.remove("open-popup")
+        }
+    </script>
+</body> 
+</html>
