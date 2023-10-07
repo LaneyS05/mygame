@@ -10,12 +10,16 @@ let score = 0;
 const scoreElement = document.querySelector(".score")
 const highScoreElement = document.querySelector(".high-score")
 
+const greenbtn = document.querySelector("#green")
+const bluebtn = document.querySelector("#blue")
+const purplebtn = document.querySelector("#purple")
+
 // getting the high score
 let highScore = localStorage.getItem("high-score") || 0;
 highScoreElement.innerText = `High Score: ${highScore}`;
 
 //snake head
-var snakeX = blockSize * 5;
+var snakeX = blockSize * 5; 
 var snakeY = blockSize * 5;
 
 var velocityX = 0;
@@ -38,7 +42,7 @@ window.onload = function(){
 
   placeFood();
   document.addEventListener("keyup", changeDirection);
-  //update();
+  
   setInterval(update, 1000/10);
 }  
 
@@ -47,9 +51,11 @@ function update(){
     return;
   }
 
+  //board color and size
   context.fillStyle ="#322d31";
   context.fillRect(0, 0, board.width, board.height);
 
+  // food color and size
   context.fillStyle="#960018";
   context.fillRect(foodX, foodY, blockSize, blockSize);
 
@@ -78,6 +84,7 @@ function update(){
   for (let i = 0; i < snakeBody.length; i++){
     context.fillRect(snakeBody[i][0], snakeBody[i][1], blockSize, blockSize);
   }
+
 
   //game over conditions
   if (snakeX < 0 || snakeX > cols*blockSize || snakeY < 0 || snakeY > rows*blockSize){
@@ -121,3 +128,31 @@ function placeFood(){
   foodX = Math.floor(Math.random() * cols) * blockSize;
   foodY = Math.floor(Math.random() * rows) * blockSize;
 }
+
+//trying to get the color btns to work
+function bluecol(){
+  console.log("testing")
+  
+  context.fillStyle="blue";
+  context.fillRect(snakeX, snakeY, blockSize, blockSize);
+
+}
+
+function pinkcol(){
+  console.log("testing")
+
+  context.fillStyle="#f013f0";
+  context.fillRect(snakeX, snakeY, blockSize, blockSize);
+}
+
+function greencol(){
+  console.log("testing")
+
+  context.fillStyle="lime";
+  context.fillRect(snakeX, snakeY, blockSize, blockSize);
+}
+
+
+bluebtn.addEventListener("click", bluecol)
+purplebtn.addEventListener("click", pinkcol)
+greenbtn.addEventListener("click", greencol)
