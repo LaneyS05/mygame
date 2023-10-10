@@ -7,6 +7,10 @@ var context;
 let setIntervalId;
 let score = 0;
 
+//sound
+var sound = document.getElementById("bite");
+var diedsound = document.getElementById("die");
+
 const scoreElement = document.querySelector(".score")
 const highScoreElement = document.querySelector(".high-score")
 
@@ -33,6 +37,9 @@ var foodY;
 
 //game over
 var gameOver = false;
+
+//snake color
+var snakeColor = "lime";
 
 window.onload = function(){
   board = document.getElementById("board");
@@ -63,6 +70,7 @@ function update(){
     snakeBody.push([foodX, foodY])
     placeFood();
     score++;
+    sound.play();
 
     highScore = score >= highScore ? score : highScore;
     localStorage.setItem("high-score", highScore);
@@ -77,7 +85,7 @@ function update(){
     snakeBody[0] = [snakeX, snakeY]
   }
 
-  context.fillStyle="lime";
+  context.fillStyle=snakeColor;
   snakeX += velocityX * blockSize;
   snakeY += velocityY * blockSize;
   context.fillRect(snakeX, snakeY, blockSize, blockSize);
@@ -89,6 +97,7 @@ function update(){
   //game over conditions
   if (snakeX < 0 || snakeX > cols*blockSize || snakeY < 0 || snakeY > rows*blockSize){
     gameOver = true;
+    diedsound.play();
   }
 
   for ( let i = 0; i < snakeBody.length; i++){
@@ -130,29 +139,24 @@ function placeFood(){
 }
 
 //trying to get the color btns to work
-function bluecol(){
-  console.log("testing")
-  
-  context.fillStyle="blue";
-  context.fillRect(snakeX, snakeY, blockSize, blockSize);
+bluebtn.addEventListener("click", bluecol)
+purplebtn.addEventListener("click", pinkcol)
+greenbtn.addEventListener("click", greencol)
 
+function bluecol(){
+  snakeColor= "blue";
+  context.fillStyle=snakeColor;
+  context.fillRect(snakeX, snakeY, blockSize, blockSize);
 }
 
 function pinkcol(){
-  console.log("testing")
-
-  context.fillStyle="#f013f0";
+  snakeColor= "#f013f0";
+  context.fillStyle=snakeColor;
   context.fillRect(snakeX, snakeY, blockSize, blockSize);
 }
 
 function greencol(){
-  console.log("testing")
-
-  context.fillStyle="lime";
+  snakeColor= "lime";
+  context.fillStyle=snakeColor;
   context.fillRect(snakeX, snakeY, blockSize, blockSize);
 }
-
-
-bluebtn.addEventListener("click", bluecol)
-purplebtn.addEventListener("click", pinkcol)
-greenbtn.addEventListener("click", greencol)
